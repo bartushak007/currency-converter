@@ -15,10 +15,14 @@ import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter path={process.env.PUBLIC_URL + '/'}>
+    <BrowserRouter>
       <TemplateContainer>
         <Switch>
-          <Route path="/" component={ConverterContainer} exact />
+          <Route
+            path={process.env.PUBLIC_URL + "/"}
+            component={ConverterContainer}
+            exact
+          />
           <Route path={`/currencies`} component={CurrenciesListContainer} />
           <Route path={`/both`} component={Both} />
         </Switch>
