@@ -28,11 +28,25 @@ const TopMenu = memo(({ base, fetchCurrency, currencyList }) => {
           >
             Currencies
           </NavLink>
+
+          <NavLink
+            activeClassName="top-menu__link--active"
+            className="top-menu__link"
+            to="/both"
+          >
+            Both
+          </NavLink>
         </div>
         <div>
-          <select className="control" value={selectBase} onChange={handleSelectBase}>
+          <select
+            className="control"
+            value={selectBase}
+            onChange={handleSelectBase}
+          >
             {currencyList.map(currency => (
-              <option value={currency} key={currency}>{currency}</option>
+              <option value={currency} key={currency}>
+                {currency}
+              </option>
             ))}
           </select>
         </div>

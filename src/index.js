@@ -8,6 +8,7 @@ import { BrowserRouter, Switch, Route } from "react-router-dom";
 import TemplateContainer from "./containers/TemplateContainer";
 import ConverterContainer from "./containers/ConverterContainer";
 import CurrenciesListContainer from "./containers/CurrenciesListContainer";
+import Both from "./pages/both";
 import "./styles/main.scss";
 
 import * as serviceWorker from "./serviceWorker";
@@ -19,6 +20,7 @@ ReactDOM.render(
         <Switch>
           <Route path="/" component={ConverterContainer} exact />
           <Route path={`/currencies`} component={CurrenciesListContainer} />
+          <Route path={`/both`} component={Both} />
         </Switch>
       </TemplateContainer>
     </BrowserRouter>
