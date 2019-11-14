@@ -9,3 +9,5 @@ export const selectConverterIsError = state => selectConverter(state).isError;
 
 export const selectConverterCurrencyList = state =>
   selectConverter(state).currencyList;
+
+  export const selectSelections = state => selectConverter(state).selections;

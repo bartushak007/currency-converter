@@ -2,13 +2,25 @@ import {
   LOAD_CURRENCIES,
   FETCH_CURRENCIES,
   SET_CURRENCIES_LOAD_ERROR,
-  SET_BASE_CURRENCY
+  SET_BASE_CURRENCY,
+  ADD_SELECTED_CURRENCY,
+  REMOVE_SELECTED_CURRENCY
 } from "./types";
 
 import { selectCurrencyURL } from "../dataTemplate/dataTemplateSelectors";
 import { selectConverterBase } from "../converter/convertSelectors";
 
 import { resolvePath } from "../../helpers/index";
+
+export const addToSelected = selected => ({
+  type: ADD_SELECTED_CURRENCY,
+  selected
+});
+
+export const removeFromSelected = removed => ({
+  type: REMOVE_SELECTED_CURRENCY,
+  removed
+});
 
 export const setLoadCurrencies = isLoading => ({
   type: LOAD_CURRENCIES,

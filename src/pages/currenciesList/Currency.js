@@ -1,28 +1,50 @@
-import React, { useState, memo, useEffect } from "react";
+import React, { useState, memo, useEffect, useRef } from "react";
 
-const Currency = memo(({ currency, value, base }) => {
-  const [checked, setChecked] = useState(false);
-  const handleChange = ({ target }) => {
-    setChecked(!checked);
-  };
+const Currency = memo(
+  ({
+    currency,
+    value,
+    base,
+    addToSelected,
+    removeFromSelected,
+    selections,
+    className
+  }) => {
+    const [checked, setChecked] = useState(
+      selections.includes(currency) ? true : false
+    );
 
-  useEffect(()=> {
-    console.log(checked)
-  }, [checked])
+    const handleChange = () => {
+      setChecked(!checked);
+    };
 
-  return (
-    <div className="currencies__list">
-      <span>"{currency}" is equal to: </span>
-      <span className="currencies__equal">
-        {value} "{base}"
-      </span>
-      <span>
-        {" "}
-        Select to selections{" "}
-        <input type="checkbox" onChange={handleChange} checked={checked} />
-      </span>
-    </div>
-  );
-});
+    const hasMount = useRef(false);
+
+    const checkedEffect = () => {
+      if (hasMount.current) {
+        checked ? addToSelected(currency) : removeFromSelected(currency);
+      } else {
+        hasMount.current = true;
+      }
+    };
+
+    useEffect(checkedEffect, [checked]);
+
+    return (
+      <div
+        className={`currencies__list-elem currencies__list-elem--${className}`}
+      >
+        <span className="currencies__text">"{currency}" is equal to: </span>
+        <span className="currencies__equal currencies__text">
+          {value} "{base}"
+        </span>
+        <span className="currencies__text">
+          Move to selections{" "}
+          <input type="checkbox" onChange={handleChange} checked={checked} />
+        </span>
+      </div>
+    );
+  }
+);
 
 export default Currency;

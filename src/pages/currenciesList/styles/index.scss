@@ -1,13 +1,23 @@
 .currencies {
   padding: 2rem 0;
 
-  &__list {
+  &__selections {
+    padding-bottom: 1rem;
+  }
+
+  &__list-elem {
     width: 100%;
-    padding: 2.5rem;
+    padding: 2rem;
     margin: 0.3rem 0;
     display: flex;
     justify-content: space-around;
     box-shadow: 1px 1px 4px -1px rgba(0, 0, 0, 0.33);
+    flex-wrap: wrap;
+    
+    &--selected {
+      padding: 2.5rem;
+      background: #bfbfbf86;
+    }
   }
 
   &__equal {
@@ -15,5 +25,10 @@
     display: inline-block;
     text-align: right;
     color: #20bba6;
+  }
+
+  &__text {
+    display: inline-block;
+    padding: 0.3rem;
   }
 }
