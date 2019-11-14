@@ -40,7 +40,7 @@ img {
   height: auto;
 }
 
-button {
+.control {
   border: 1px solid #0097ff;
     color: #0097ff;
     outline: 0;
@@ -52,4 +52,5 @@ button {
 .container {
   max-width: 1500px;
   margin: 0 auto;
+  padding: 0 1rem;
 }

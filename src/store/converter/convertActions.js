@@ -20,21 +20,40 @@ export const setCurrenciesLoadError = isError => ({
   isError
 });
 
-export const setBaseCurrency = base => ({ type: SET_BASE_CURRENCY, base });
+export const setBaseCurrency = base => dispatch => {
+  
+  dispatch({ type: SET_BASE_CURRENCY, base });
+  
+};
 
-export const fetchCurrency = () => (dispatch, state) => {
-  const currentState = state();
-  const URL = selectCurrencyURL(currentState);
-  const base = selectConverterBase(currentState);
-  dispatch(setLoadCurrencies(true));
 
-  fetch(URL ? resolvePath(URL) : null)
-    .then(j => j.json())
-    .then(data => {
-      dispatch({ type: FETCH_CURRENCIES, data: data.rates });
-      dispatch(setCurrenciesLoadError(false));
-      dispatch(setBaseCurrency(base || data.base));
-    })
-    .catch(() => dispatch(setCurrenciesLoadError(true)))
-    .finally(() => dispatch(setLoadCurrencies(false)));
+
+export function fetchCurrency (currencyBase)  {
+  return (dispatch, state) => {
+    const currentState = state();
+    const URL = selectCurrencyURL(currentState);
+    const base = currencyBase || selectConverterBase(currentState);
+    dispatch(setLoadCurrencies(true));
+  
+    fetch(URL ? resolvePath(URL) : null)
+      .then(j => j.json())
+      .then(data => {
+        const rates =
+          base === "USD"
+            ? data.rates
+            : Object.entries(data.rates).reduce(
+                (obj, [key, value]) => ({
+                  ...obj,
+                  [key]: value / data.rates[base]
+                }),
+                {}
+              );
+  
+        dispatch({ type: FETCH_CURRENCIES, data: rates });
+        dispatch(setCurrenciesLoadError(false));
+        dispatch(setBaseCurrency(base || data.base));
+      })
+      .catch(() => dispatch(setCurrenciesLoadError(true)))
+      .finally(() => dispatch(setLoadCurrencies(false)));
+  }
 };

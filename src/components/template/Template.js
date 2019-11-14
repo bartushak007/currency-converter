@@ -25,7 +25,7 @@ const Template = ({
       {!isTemplateLoading && !converterIsLoading && (
         <>
           {converterIsError ? (
-            <button onClick={fetchCurrency}>Reload Currencies</button>
+            <button className="control" onClick={fetchCurrency}>Reload Currencies</button>
           ) : (
             <>
               <header>
