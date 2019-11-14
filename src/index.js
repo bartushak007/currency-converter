@@ -19,7 +19,7 @@ ReactDOM.render(
       <TemplateContainer>
         <Switch>
           <Route
-            path={process.env.PUBLIC_URL + "/"}
+            path={"/"}
             component={ConverterContainer}
             exact
           />
