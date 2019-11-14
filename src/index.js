@@ -15,7 +15,7 @@ import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <Provider store={store}>
-    <BrowserRouter>
+    <BrowserRouter path={process.env.PUBLIC_URL + '/'}>
       <TemplateContainer>
         <Switch>
           <Route path="/" component={ConverterContainer} exact />

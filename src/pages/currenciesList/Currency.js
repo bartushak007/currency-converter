@@ -34,7 +34,7 @@ const Currency = memo(
       <div
         className={`currencies__list-elem currencies__list-elem--${className}`}
       >
-        <span className="currencies__text">"{currency}" is equal to: </span>
+        <span className="currencies__text">1 "{currency}" is equal to: </span>
         <span className="currencies__equal currencies__text">
           {value} "{base}"
         </span>
