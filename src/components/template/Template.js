@@ -1,13 +1,41 @@
-import React from "react";
+import React, { useEffect } from "react";
 import TopMenuContainer from "../../containers/TopMenuContainer";
 
-const Template = ({ children }) => {
+const Template = ({
+  children,
+  fetchDataTemplate,
+  fetchCurrency,
+  isTemplateLoading,
+  dataTemplate,
+  converterIsLoading,
+  converterIsError
+}) => {
+  const fetchDataEffect = () => {
+    fetchDataTemplate();
+  };
+  const fetchCurrencyEffect = () => {
+    !isTemplateLoading && fetchCurrency();
+  };
+
+  useEffect(fetchDataEffect, []);
+  useEffect(fetchCurrencyEffect, [isTemplateLoading]);
+
   return (
     <>
-      <header>
-        <TopMenuContainer />
-      </header>
-      {children}
+      {!isTemplateLoading && !converterIsLoading && (
+        <>
+          {converterIsError ? (
+            <button onClick={fetchCurrency}>Reload Currencies</button>
+          ) : (
+            <>
+              <header>
+                <TopMenuContainer />
+              </header>
+              {children}
+            </>
+          )}
+        </>
+      )}
     </>
   );
 };

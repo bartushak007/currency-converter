@@ -1,0 +1,30 @@
+.top-menu {
+  padding: 1rem 0 2rem;
+  font-weight: 600;
+  color: rgb(88, 82, 82);
+  box-shadow: 0px 4px 11px 0px #0097ff47;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
+  }
+
+  &__links-list {
+    display: flex;
+    
+    flex-wrap: wrap;
+  }
+
+  &__link {
+    white-space: nowrap;
+    padding: 0.3rem;
+    transition: 0.5s;
+    border: 2px solid transparent;
+
+    &--active {
+      color: #0097ff;
+      border-bottom: 2px solid #0097ff;
+    }
+  }
+}
