@@ -1,20 +1,23 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
+import React from "react";
+import ReactDOM from "react-dom";
 
-import HomeContainer from './containers/HomeContainer';
+import { Provider } from "react-redux";
+import store from "./store/store";
+import { BrowserRouter } from "react-router-dom";
 
-import { Provider } from 'react-redux';
-import store from './store/store';
+import TemplateContainer from "./containers/TemplateContainer";
 
-import './styles/main.scss';
+import "./styles/main.scss";
 
-import * as serviceWorker from './serviceWorker';
+import * as serviceWorker from "./serviceWorker";
 
 ReactDOM.render(
   <Provider store={store}>
-    <HomeContainer/>
+    <TemplateContainer>
+      <BrowserRouter>BrowserRouter</BrowserRouter>
+    </TemplateContainer>
   </Provider>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 serviceWorker.unregister();
